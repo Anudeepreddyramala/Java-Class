@@ -1,6 +1,6 @@
 package com.basics;
 
-public class Car extends Vehicle {
+public class Car extends Vehicle implements Automobile{
 
 	public Car() {
 	}
@@ -9,19 +9,27 @@ public class Car extends Vehicle {
 		super(vehicleID, vehicleType);
 	}
 
-	String carType = "BMW";
-	int carPrice = 10000;
+	final int carPrice = 10000;
 
 	public void getType() {
-		System.out.println("The car type is " + carType);
+		System.out.println("The car type is " + CARTYPE);
 	}
 
 	public void getPrice() {
+		//carPrice=carPrice+2;        --CompileTime Error due to Final
 		System.out.println("The car Price is " + carPrice);
 	}
 
 	public static void main(String args[]) {
-
+        name.concat("Reddy");    
+        System.out.println(name);        //String is immutable
+        
+        StringBuffer sbf= new StringBuffer(name);      
+        System.out.println(sbf.append("Reddy"));      //StringBuffer is mutable and thread safe
+        
+        StringBuilder sbd=new StringBuilder(name);
+        System.out.println(sbd.append("Reddy"));      //StringBuilder is mutable and not thread safe
+		
 		Vehicle v1 = new Car(10,"Car"); // upcasting
 		v1.getType();
 		//v1.getPrice();     ---- Compiletime Error
@@ -40,5 +48,6 @@ public class Car extends Vehicle {
 		else {
 			System.out.println("Both objects are not same");
 		}
+		System.out.println("Hashcodes are "+v2.hashCode()+" , "+v3.hashCode());
 	}
 }

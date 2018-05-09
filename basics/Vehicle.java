@@ -6,7 +6,7 @@ public class Vehicle {
 
 	int vehicleID;
 	String vehicleType;
-	static String name = "Anudeep";
+	static String name = "Anudeep"; 
 
 	public Vehicle() {
 
@@ -27,10 +27,19 @@ public class Vehicle {
 	}
 	 
 	 public boolean equals(Object ob) {
-		 if(!(ob instanceof Vehicle))
+		 if(ob==null) {
 			 return false;
+		 }
+		 else if(!(ob instanceof Vehicle)) {
+			 return false; 
+		 }
+		 else {
 		 Vehicle v = (Vehicle)ob;
 		 return Objects.equals(vehicleID, v.vehicleID)&&Objects.equals(vehicleType, v.vehicleType);
+		 }
+	 }
+	 public int hashCode() {
 		 
+		 return (int)vehicleID*vehicleType.hashCode();
 	 }
 }
